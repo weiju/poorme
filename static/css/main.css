@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Helvetica, Geneva, Arial, sans-serif;
+    font-size: large;
+    margin-left: 5pt;
+    margin-bottom: 5pt;
+}
+
+table.inputgrid {
+    border-spacing: 0;
+    border-collapse: collapse:
+}
+table.inputgrid td, th {
+    padding: 2pt;
+    color: #444444;
+    margin-left: 2pt;
+    margin-right: 2pt;
+}
+
+table.inputgrid th {
+    font-size: 14pt;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: Times, serif;
+    margin: 5pt;
+    color: #444444;
+}
+
+h1 {
+    font-size: 30pt;
+    font-style: italic;
+    /* font-weight: normal; */
+    margin: 10pt;
+}
+
+h3 {
+    font-size: 20pt;
+    font-weight: normal;
+}
+
+.sectionbox {
+    background-color: #f1e5cc;
+    border: 1px solid #cccccc;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.radio-caption {
+    font-size: 14pt;
+    margin-right: 5pt;
+    margin-left: 2pt;
+    color: #444444;
+}
+
+.caption {
+    font-weight: bold;
+    font-size: 14pt;
+    color: #444444;
+}
+
+.inputrow {
+    margin-bottom: 1.2em;
+}
+
+select {
+    font-size: 14pt;
+    border: 1px #444444 solid;
+    border-radius: 5px;
+    color: #444444;
+}
+
+input[type=text] {
+    font-size: 14pt;
+    border: 1px #444444 solid;
+    border-radius: 5px;
+    width: 200pt;
+}
+
+input[type=text].age {
+    font-size: 14pt;
+    border: 1px #444444 solid;
+    border-radius: 5px;
+    width: 40pt;
+}
+
+input[type=submit] {
+    width: 100px;
+    display: block;
+    clear: both;
+    margin: auto;
+    padding: 5px;
+    font-family: Times;
+    font-size: 16pt;
+    color: #222222;
+}
+
+.location-city {
+    font-size: 12pt;
+    font-weight: bold;
+}
+.location-detail {
+    font-size: 10pt;
+    font-style: italic;
+}

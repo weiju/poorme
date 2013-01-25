@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+  <head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/main.css" type="text/css" />
+    <script src="/static/javascripts/jquery-1.9.0.min.js"></script>    
+  </head>
+  <body>
+    <div id="header"></div>
+    <div id="content">
+      {% block content %}{% endblock %}
+    </div>
+    <div id="footer"></div>
+  </body>
+</html>
