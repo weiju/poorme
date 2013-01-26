@@ -17,33 +17,54 @@ body {
     border: solid red 1px;
 }
 
-a.navlink {
-    padding-left: 10pt;
-    padding-right: 10pt;
-    line-height: 60pt;
+#nav {
+    /* clear: both; */
+    height: 100px;
+}
+#nav ul {
+    width: 600px;
+    list-style: none;
+    float: left;
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+#nav ul li {
+    display: inline;
+}
+
+#nav ul li a {
+    display: block;
+    float: left;
+    width: auto;
     text-decoration: none;
     color: #333333;
+    /* border: 1px solid red; */
+    padding-top: 10pt;
+    padding-left: 10pt;
+    padding-right: 10pt;
+    height: 60px;
 }
-a.navlink:hover {
-    line-height: 60pt;
+#nav ul li a:hover {
     color: #f6f6f6;
     background-color: #333333;
 }
 
+.navlinksel {
+    color: #f6f6f6 !important;
+    background-color: #333333;
+}
+
+.clearfix { clear: both; }
+
 input.searchbox {
+    margin-top: 10pt;
+    margin-left: 1em;
     background-image:url('/static/images/mag_glass.png');
     background-repeat: no-repeat;
     background-position: right;
     border-radius: 3px;
     height: 14pt;
-}
-
-.navlinksel {
-    padding-top: 10pt;
-    padding-left: 10pt;
-    padding-right: 10pt;
-    background-color: #333333;
-    color: #f6f6f6;
 }
 
 img.align-left {
