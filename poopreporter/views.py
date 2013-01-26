@@ -9,3 +9,11 @@ def index(request):
 def about(request):
     aboutclass = 'navlinksel'
     return render_to_response('about.html', locals())
+
+def team(request):
+    teamclass = 'navlinksel'
+    return render_to_response('team.html', locals())
+
+def contact(request):
+    contactclass = 'navlinksel'
+    return render_to_response('contact.html', locals())

@@ -18,4 +18,6 @@ urlpatterns = patterns('',
 
     url(r'^$', 'poopreporter.views.index'),
     url(r'^about$', 'poopreporter.views.about'),
+    url(r'^team$', 'poopreporter.views.team'),
+    url(r'^contact$', 'poopreporter.views.contact'),
 )
