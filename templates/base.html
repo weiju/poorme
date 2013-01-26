@@ -3,14 +3,22 @@
   <head>
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="/static/css/main.css" type="text/css" />
-    <script src="/static/javascripts/jquery-1.9.0.min.js"></script>    
+    <script src="/static/javascripts/jquery-1.9.0.min.js"></script>
+    <meta name="viewport" content="width=device-width/" >
   </head>
   <body>
-    <div id="header"></div>
+    <div id="topborder"></div>
+    <div id="navbar">
+      <img src="/static/images/logo.png" class="align-left"></img>
+      <span class="navlinksel">Home</span>
+      <span class="navlink"><a href="about" class="navlink">About</a></span>
+      <span class="navlink"><a href="team" class="navlink">Team</a></span>
+      <span class="navlink"><a href="contact" class="navlink">Contact</a></span>
+      <span><input type="text" onfocus="this.value=''" value="Search" class="searchbox"></input></span>
+    </div>
     <div id="content">
       {% block content %}{% endblock %}
     </div>
     <div id="footer"></div>
   </body>
 </html>
-
