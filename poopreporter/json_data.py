@@ -49,11 +49,8 @@ def build_symptoms():
     return data
 
 def build_symptom_list():
-    data = []
     query = Symptom.objects.all()
-    for symptom in query:
-        data.append(symptom.name)
-    return data
+    return sorted([symptom.name for symptom in query])
 
 def statuses_and_symptoms(request):
     statuses = build_statuses()
