@@ -41,9 +41,13 @@ def contact(request):
 def communication(request, id):
     status = Status.objects.get(id=id)
     replies = status.replies
+    wishlist = status.wishlist
     print "replies: ", replies.count()
-    for reply in replies.all():
-        print "reply: ", reply
+    print "wishes: ", wishlist.count()
+
+    for wish in wishlist.all():
+        print "wish: ", wish
+
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():

@@ -10,6 +10,14 @@
 <div id="sidebar">
   <div class="personname">{{status.name}}</div>
   <div class="comment">"{{status.status.text}}"</div>
+  {% if wishlist.count > 0 %}
+  <div>Wishlist</div>
+  <ul>
+    {% for w in wishlist.all %}
+    <li>{{w.name}}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
 </div>
 <div id="maincol">
   {% if replies.count == 0 %}
@@ -28,6 +36,15 @@
     <form action="/communication/{{status.id}}" method="post">{% csrf_token %}
     <div>Comment</div>
     <textarea name="text" cols="40" rows="8"></textarea>
+    {% if wishlist.count > 0 %}
+    <div>Send the following to {{status.name}}</div>
+    <ul style="list-style: none">
+      {% for w in wishlist.all %}
+      <li><input type="checkbox">{{w.name}}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
     <div>Name</div>
     <div><input name="author" type="text"> <input type="submit" value="Submit"></div>
     </form>
