@@ -3,6 +3,10 @@ from django.utils import simplejson
 from poopreporter.models import Status, Zipcode
 
 def statuses(request):
+    data = build_statuses()
+    return HttpResponse(simplejson.dumps(data), mimetype='application/json')
+
+def build_statuses():
     data = []
     query = Status.objects.all()
     for status in query:
@@ -16,10 +20,14 @@ def statuses(request):
             'longitude': str(zip_query.longitude),
         }
         data.append(status_data)
+    return data
 
-    return HttpResponse(simplejson.dumps(data), mimetype='application/json')
 
 def symptoms(request):
+    data = build_symptoms()
+    return HttpResponse(simplejson.dumps(data), mimetype='application/json')
+
+def build_symptoms():
     data = {}
     query = Status.objects.all()
     for status in query:
@@ -37,5 +45,11 @@ def symptoms(request):
                 data[name] += [symptom_data]
             else:
                 data[name] = [symptom_data]
+    return data
 
+
+def statuses_and_symptoms(request):
+    statuses = build_statuses()
+    symptoms = build_symptoms()
+    data = {'statuses': statuses, 'symptoms': symptoms}
     return HttpResponse(simplejson.dumps(data), mimetype='application/json')
