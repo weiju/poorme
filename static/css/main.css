@@ -155,7 +155,7 @@ hr {
 }
 
 .whatswrong {
-    font-size: x-large;
+    font-size: 14pt;
     font-weight: bold;
     margin-bottom: 5pt;
 }
@@ -166,4 +166,11 @@ hr {
 
 .caption {
     font-weight: bold;
+}
+
+ul.symptomlist {
+    list-style: none;
+}
+ul.symptomlist li {
+    font-size: 10pt;
 }
