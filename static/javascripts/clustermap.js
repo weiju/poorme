@@ -18,6 +18,18 @@
         geocoder = new google.maps.Geocoder();
         populateMap(data);
     }
+    
+    function populateChecklist(symptoms){
+        for (var i in symptoms){
+            var symptom_name = symptoms[i];
+            var html = '<div><input type="checkbox" name="symptoms" value="' + symptom_name + '" checked> ' + symptom_name + '</div>';
+            $("#symptom_checklist").append($(html));
+        }
+        var html = '<div><input type="submit" value="Refresh map" onclick="refreshSymptoms()" /></div>';
+        $("#symptom_checklist").append($(html));
+        
+        showSymptoms();
+    }
 
     function showPeople(){
         if (!markerClusterer){
@@ -25,7 +37,9 @@
         }
         if (heatmap){
             heatmap.setMap(null);
+            heatmap = null;
         }
+        $("#symptom_checklist").hide();
     }
 
     function showSymptoms(){
@@ -36,6 +50,16 @@
             markerClusterer.clearMarkers();
             markerClusterer = null;
         }
+        $("#symptom_checklist").show();
+    }
+    
+    function refreshSymptoms(){
+        if (heatmap){
+            heatmap.setMap(null);
+            heatmap = null;
+        }
+
+        showSymptoms();
     }
       
     function populateMap(data){
@@ -52,13 +76,27 @@
             }
             symptoms[name] = one_symptom;
         }
-
-        
-        showPeople();
     }
 
     function buildHeatmapOfSymptom(symptom_name){
-        symptoms_point_array = new google.maps.MVCArray(symptoms[symptom_name]);
+        var selectedVal = "";
+        var selected = $("#symptom_checklist div input[type='checkbox']:checked");
+        if (selected.length > 0){
+            var s = [];
+            for (var i = 0; i < selected.length; i++){
+                s.push(selected[i].value);
+            }             
+        }
+        
+        var concat_symptoms = [];
+        for (i in s){
+            if (symptoms[s[i]]){
+                concat_symptoms = concat_symptoms.concat(symptoms[s[i]]);
+            }
+        }
+        
+    
+        symptoms_point_array = new google.maps.MVCArray(concat_symptoms);
         heatmap = new google.maps.visualization.HeatmapLayer({
             data: symptoms_point_array
         });

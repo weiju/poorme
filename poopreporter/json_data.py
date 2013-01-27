@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.utils import simplejson
-from poopreporter.models import Status, Zipcode
+from poopreporter.models import Status, Zipcode, Symptom
 
 def statuses(request):
     data = build_statuses()
@@ -47,9 +47,16 @@ def build_symptoms():
                 data[name] = [symptom_data]
     return data
 
+def build_symptom_list():
+    data = []
+    query = Symptom.objects.all()
+    for symptom in query:
+        data.append(symptom.name)
+    return data
 
 def statuses_and_symptoms(request):
     statuses = build_statuses()
     symptoms = build_symptoms()
-    data = {'statuses': statuses, 'symptoms': symptoms}
+    symptom_list = build_symptom_list()
+    data = {'statuses': statuses, 'symptoms': symptoms, 'symptom_list': symptom_list}
     return HttpResponse(simplejson.dumps(data), mimetype='application/json')
