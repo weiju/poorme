@@ -244,6 +244,9 @@ ul.symptomlist li {
     margin-right: auto;
     font-family: 'Nunito', sans-serif;   
 }
+input {
+    border: 1px solid black;
+}
 
 #outerfooter{
     background-color: #444;
