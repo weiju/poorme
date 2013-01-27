@@ -18,6 +18,25 @@
         geocoder = new google.maps.Geocoder();
         populateMap(data);
     }
+
+    function showPeople(){
+        if (!markerClusterer){
+            markerClusterer = new MarkerClusterer(map, markers);
+        }
+        if (heatmap){
+            heatmap.setMap(null);
+        }
+    }
+
+    function showSymptoms(){
+        if (!heatmap){
+            buildHeatmapOfSymptom('fever');
+        }
+        if (markerClusterer){
+            markerClusterer.clearMarkers();
+            markerClusterer = null;
+        }
+    }
       
     function populateMap(data){
         for (var i = 0; i < data.statuses.length; i++){
@@ -34,11 +53,8 @@
             symptoms[name] = one_symptom;
         }
 
-        buildHeatmapOfSymptom('fever');
-
         
-        markerClusterer = new MarkerClusterer(map, markers);
-        //markerClusterer.setMap(null);
+        showPeople();
     }
 
     function buildHeatmapOfSymptom(symptom_name){

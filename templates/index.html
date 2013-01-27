@@ -1,9 +1,8 @@
 {% extends 'base.html' %}
 {% block title %}Poop Reporter - Welcome{% endblock %}
 {% block jsext %}
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDN1P_EGMeYDtgzg22HindpmcRnNr_zEv8&amp;sensor=true"></script>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDN1P_EGMeYDtgzg22HindpmcRnNr_zEv8&sensor=true&libraries=visualization"></script>
   <script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/src/markerclusterer_compiled.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=visualization"></script>
   <script src="/static/javascripts/clustermap.js"></script>
 
 <script type="text/javascript">
@@ -16,5 +15,9 @@
 {% endblock %}
 {% block content %}
   <div id="map_canvas" style="width:600px; height:400px; border: 1px solid black; margin: 5px;"></div>
+  <div id="map_options" style="margin: 5px">
+    <a href="#" onclick="showPeople()">View Friends</a> | 
+    <a href="#" onclick="showSymptoms()">View Symptoms</a>
+  </div>
 {% endblock %}
 
