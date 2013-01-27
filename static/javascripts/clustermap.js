@@ -6,6 +6,7 @@
     var symptoms = {};
     var symptoms_point_array;
     var heatmap;
+    var rand = 1/100.0;
     
     function initialize(data) {
         var mapOptions = {
@@ -72,7 +73,7 @@
             var instances = data.symptoms[name];
             var one_symptom = [];
             for (var i = 0; i < instances.length; i++){
-                one_symptom.push(new google.maps.LatLng(instances[i].latitude, instances[i].longitude));
+                one_symptom.push(new google.maps.LatLng(Number(instances[i].latitude) + Math.random()*rand - rand/2, Number(instances[i].longitude) + Math.random()*rand - rand/2));
             }
             symptoms[name] = one_symptom;
         }
@@ -104,8 +105,8 @@
     }
       
     function addPersonMarker(person){
-        var latLng = new google.maps.LatLng(person.latitude,
-              person.longitude);
+        var latLng = new google.maps.LatLng(Number(person.latitude) + Math.random()*rand - rand/2,
+              Number(person.longitude) + Math.random()*rand - rand/2);
               
               
         var marker = new google.maps.Marker({
