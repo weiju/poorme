@@ -29,7 +29,7 @@
         var html = '<div><input type="submit" value="Refresh map" onclick="refreshSymptoms()" /></div>';
         $("#symptom_checklist").append($(html));
         
-        showSymptoms();
+        showPeople();
     }
 
     function showPeople(){
@@ -41,6 +41,7 @@
             heatmap = null;
         }
         $("#symptom_checklist").hide();
+        $("#map_title").html("People Sick in Seattle");
     }
 
     function showSymptoms(){
@@ -52,6 +53,9 @@
             markerClusterer = null;
         }
         $("#symptom_checklist").show();
+        
+        $("#map_title").html("Trending Symptoms in Seattle");
+
     }
     
     function refreshSymptoms(){
