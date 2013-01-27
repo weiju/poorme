@@ -15,7 +15,7 @@ def build_statuses():
         status_data = {
             'name': status.name, 
             'status': status.status.text, 
-            'url': 'http://google.com', 
+            'url': '/communication/' + str(status.id), 
             'latitude': str(zip_query.latitude),
             'longitude': str(zip_query.longitude),
         }
