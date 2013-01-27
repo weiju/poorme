@@ -22,4 +22,7 @@ urlpatterns = patterns('',
     url(r'^contact$', 'poopreporter.views.contact'),
     url(r'^communication$', 'poopreporter.views.communication'),
     url(r'^input$', 'poopreporter.views.input'),
+
+    url(r'^statuses$', 'poopreporter.json_data.statuses'),
+    url(r'^symptoms$', 'poopreporter.json_data.symptoms'),
 )

@@ -5,7 +5,7 @@
     var infowindow;
     
     
-    function initialize() {
+    function initialize(data) {
         var mapOptions = {
             center: new google.maps.LatLng(47.652421, -122.310376),
             zoom: 8,
@@ -14,12 +14,12 @@
         map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
             
         geocoder = new google.maps.Geocoder();
-        populateMap();
+        populateMap(data);
     }
       
-    function populateMap(){
-        for (var i = 0; i < data.people.length; i++){
-            var person = data.people[i];
+    function populateMap(data){
+        for (var i = 0; i < data.length; i++){
+            var person = data[i];
             addPersonMarker(person);
         }
         
