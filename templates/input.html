@@ -10,6 +10,9 @@
 </script>
 {% endblock %}
 {% block content %}
+{% if errors %}
+{{errors}}
+{% endif %}
 <div id="inputarea">
   <form action="/input" method="post">{% csrf_token %}
   <div id="left">
@@ -23,7 +26,7 @@
   <div id="right">
     <div class="whatswrong">What's wrong ?</div>
     {% for symptom in symptoms %}
-    <div><input type="checkbox"> {{symptom}}</div>
+    <div><input type="checkbox" name="symptoms" value="{{symptom.id}}"> {{symptom.name}}</div>
     {% endfor %}
   </div>
   <div class="clearfix" style="height: 2em;"></div>
