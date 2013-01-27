@@ -83,7 +83,7 @@ def input(request):
             mystatus.status = comment
             mystatus.save()
             form.save_m2m()
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/communication/%d' % mystatus.id)
         else:
             errors = form.errors
     else:
