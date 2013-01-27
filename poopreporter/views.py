@@ -4,6 +4,12 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django import forms
 from models import *
 
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+    author = forms.CharField(max_length=200, required=False)
+    text = forms.CharField(max_length=1000, required=False)
+
 class StatusForm(forms.ModelForm):
     class Meta:
         model = Status
@@ -31,13 +37,29 @@ def contact(request):
     contactclass = 'navlinksel'
     return render_to_response('contact.html', locals())
 
-def communication(request):
-    return render_to_response('communication.html', locals())
+def communication(request, id):
+    status = Status.objects.get(id=id)
+    replies = status.replies
+    print "replies: ", replies.count()
+    for reply in replies.all():
+        print "reply: ", reply
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            reply = form.save()
+            status.replies.add(reply)
+            status.save()
+            return HttpResponseRedirect('/communication/%s' % str(id))
+        else:
+            errors = form.errors
+    else:
+        form = CommentForm()
+    return render(request, 'communication.html', locals())
 
 def input(request):
     symptoms = Symptom.objects.all()
     if request.method == 'POST':
-        form = StatusForm(request.POST, symptoms)
+        form = StatusForm(request.POST)
         if form.is_valid():
             name = form.cleaned_data['name']
             anonymous = form.cleaned_data['anonymous']
@@ -54,5 +76,5 @@ def input(request):
             errors = form.errors
     else:
         print "empty form"
-        form = StatusForm(symptoms)
+        form = StatusForm()
     return render(request, 'input.html', locals())

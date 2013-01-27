@@ -8,28 +8,29 @@
 {% endblock %}
 {% block content %}
 <div id="sidebar">
-  <div class="personname">John</div>
-  <div class="comment">"I am feeling terrible :-("</div>
+  <div class="personname">{{status.name}}</div>
+  <div class="comment">"{{status.status.text}}"</div>
 </div>
 <div id="maincol">
+  {% if replies.count == 0 %}
+  <div style="height: 2em; font-style: italic">Be the first to leave a reply to {{status.name}}</div>
+  {% else %}
+  {% for r in replies.all %}
   <div class="commentbox">
-    <div class="comment">"Sorry you're sick."</div>
-    <div class="signature">- Mary</div>
+    <div class="comment">"{{r.text}}"</div>
+    <div class="signature">- {{r.author}}</div>
     <div class="clearfix"></div>
     <hr>
   </div>
-  <div class="commentbox">
-    <div class="comment">"Feel better."</div>
-    <div class="signature">- Jack</div>
-    <div class="clearfix"></div>
-    <hr>
-  </div>
-
+  {% endfor %}
+  {% endif %}
   <div>
+    <form action="/communication/{{status.id}}" method="post">{% csrf_token %}
     <div>Comment</div>
-    <textarea cols="40" rows="8"></textarea>
+    <textarea name="text" cols="40" rows="8"></textarea>
     <div>Name</div>
-    <div><input type="text"> <input type="submit" value="Submit"></div>
+    <div><input name="author" type="text"> <input type="submit" value="Submit"></div>
+    </form>
   </div>
 </div>
 {% endblock %}
