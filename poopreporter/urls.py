@@ -20,4 +20,6 @@ urlpatterns = patterns('',
     url(r'^about$', 'poopreporter.views.about'),
     url(r'^team$', 'poopreporter.views.team'),
     url(r'^contact$', 'poopreporter.views.contact'),
+    url(r'^communication$', 'poopreporter.views.communication'),
+    url(r'^input$', 'poopreporter.views.input'),
 )

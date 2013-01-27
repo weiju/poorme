@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Poor Me - Communication{% endblock %}
+{% block jsext %}
+<script type="text/javascript">
+  $(document).ready(function() {
+  });
+</script>
+{% endblock %}
+{% block content %}
+<div id="sidebar">
+  <div class="personname">John</div>
+  <div class="comment">"I am feeling terrible :-("</div>
+</div>
+<div id="maincol">
+  <div class="commentbox">
+    <div class="comment">"Sorry you're sick."</div>
+    <div class="signature">- Mary</div>
+    <div class="clearfix"></div>
+    <hr>
+  </div>
+  <div class="commentbox">
+    <div class="comment">"Feel better."</div>
+    <div class="signature">- Jack</div>
+    <div class="clearfix"></div>
+    <hr>
+  </div>
+
+  <div>
+    <div>Comment</div>
+    <textarea cols="40" rows="8"></textarea>
+    <div>Name</div>
+    <div><input type="text"> <input type="submit" value="Submit"></div>
+  </div>
+</div>
+{% endblock %}
+

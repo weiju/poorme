@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Poor Me - Input{% endblock %}
+{% block jsext %}
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#anonymous').click(function() {
+      $('#nameinput').prop('disabled', $(this).is(':checked'));
+    });
+  });
+</script>
+{% endblock %}
+{% block content %}
+<div id="inputarea">
+  <div id="left">
+    <div class="inputrow"><span class="caption" id="namecaption">Name</span> <input id="nameinput" type="text"></div>
+    <div class="inputrow"><input id="anonymous" type="checkbox"> <span>stay anonymous</span></div>
+    <div class="inputrow"><span class="caption">Status</span></div>
+    <div class="inputrow"><textarea rows="5" cols="40"></textarea></div>
+    <div class="inputrow"><span class="caption">Zip</span></div>
+    <div class="inputrow"><input type="text"></div>
+  </div>
+  <div id="right">
+    <div class="whatswrong">What's wrong ?</div>
+    {% for symptom in symptoms %}
+    <div><input type="checkbox"> {{symptom}}</div>
+    {% endfor %}
+  </div>
+  <div class="clearfix" style="height: 2em;"></div>
+  <div id="submitbar"><input type="submit" value="Submit"></div>
+</div>
+{% endblock %}
