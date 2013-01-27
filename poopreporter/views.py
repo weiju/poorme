@@ -23,19 +23,19 @@ class StatusForm(forms.ModelForm):
     wishlist = forms.TypedMultipleChoiceField(required=False, coerce=int, choices=[(s.id, s.name) for s in Stuff.objects.all()])
 
 def index(request):
-    homeclass = 'navlinksel'
+    homeclass = 'selected'
     return render_to_response('index.html', locals())
 
 def about(request):
-    aboutclass = 'navlinksel'
+    aboutclass = 'selected'
     return render_to_response('about.html', locals())
 
 def team(request):
-    teamclass = 'navlinksel'
+    teamclass = 'selected'
     return render_to_response('team.html', locals())
 
 def contact(request):
-    contactclass = 'navlinksel'
+    contactclass = 'selected'
     return render_to_response('contact.html', locals())
 
 def communication(request, id):
