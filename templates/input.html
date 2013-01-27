@@ -11,13 +11,14 @@
 {% endblock %}
 {% block content %}
 <div id="inputarea">
+  <form action="/input" method="post">{% csrf_token %}
   <div id="left">
-    <div class="inputrow"><span class="caption" id="namecaption">Name</span> <input id="nameinput" type="text"></div>
-    <div class="inputrow"><input id="anonymous" type="checkbox"> <span>stay anonymous</span></div>
+    <div class="inputrow"><span class="caption" id="namecaption">Name</span> <input name="name" id="nameinput" type="text"></div>
+    <div class="inputrow"><input name="anonymous" id="anonymous" type="checkbox"> <span>stay anonymous</span></div>
     <div class="inputrow"><span class="caption">Status</span></div>
-    <div class="inputrow"><textarea rows="5" cols="40"></textarea></div>
+    <div class="inputrow"><textarea name="status" rows="5" cols="40"></textarea></div>
     <div class="inputrow"><span class="caption">Zip</span></div>
-    <div class="inputrow"><input type="text"></div>
+    <div class="inputrow"><input name="zipcode" type="text"></div>
   </div>
   <div id="right">
     <div class="whatswrong">What's wrong ?</div>
@@ -27,5 +28,6 @@
   </div>
   <div class="clearfix" style="height: 2em;"></div>
   <div id="submitbar"><input type="submit" value="Submit"></div>
+  </form>
 </div>
 {% endblock %}
