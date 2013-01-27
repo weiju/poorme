@@ -12,6 +12,7 @@ body {
     background-color: #f6f6f6;
     color: #333333;
     font-family: Arial, Geneva, sans-serif;
+    font-size: 10pt;
 }
 
 #navbar {
@@ -44,21 +45,20 @@ body {
     text-decoration: none;
     color: #333333;
     /* border: 1px solid red; */
+    text-transform: uppercase;
     padding-top: 10pt;
-    padding-left: 10pt;
-    padding-right: 10pt;
-    height: 60px;
+    padding-left: 0pt;
+    padding-right: 20px;
+    height: 30px;
     font-weight: bold;
-    font-size: large;
+    font-size: 14px;
 }
 #nav ul li a:hover {
-    color: #f6f6f6;
-    background-color: #333333;
+    border-bottom: 5px solid #2D3092;
 }
 
-.navlinksel {
-    color: #f6f6f6 !important;
-    background-color: #333333;
+#selected {
+    border-bottom: 5px solid #2D3092;
 }
 
 .clearfix { clear: both; }
@@ -94,6 +94,39 @@ h1 {
 h3 {
     font-size: 20pt;
     font-weight: normal;
+}
+
+#outertopbar{
+   background-color: #333333;
+   height: 30px;
+   width: 100%;
+}
+
+#innertopbar {
+   
+   color: #fff;
+   text-align:right;
+   width: 800px;
+   margin-left: auto;
+   margin-right: auto;
+   padding:  5px 15px 5px 5px;
+   vertical-align: middle;
+   font-size: 15px;
+    font-family: 'Nunito', sans-serif;   
+
+}
+
+#outerheader {
+background-color: #fff;
+   height: 133px;
+   width: 100%;
+    border-bottom: 5px solid #ccc;
+}
+#innerheader {
+   max-width: 800px;
+   margin-left: auto;
+   margin-right: auto;   
+   padding-top:20px;
 }
 
 #topborder {
@@ -173,4 +206,62 @@ ul.symptomlist {
 }
 ul.symptomlist li {
     font-size: 10pt;
+}
+
+/* animated nav */
+#blob {
+
+    background-color: transparent !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-bottom: 5px solid #2E3092;    
+    position: absolute;
+    z-index: 1;
+    top: 0;    
+}
+
+.bigbutton {
+    padding: 20px;
+    background-color: #2E3092;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    float: right;
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    color: #fff;
+    height: 30px;
+    clear: both;
+    margin: -65px 0px 0px 0px;
+}
+
+#content {
+    padding-top: 20px;
+    padding-bottom: 50px;
+    /* max-width: 1000px; */
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Nunito', sans-serif;   
+}
+
+#outerfooter{
+    background-color: #444;
+}
+
+#innerfooter {
+
+    padding-top: 50px;
+    padding-bottom: 50px;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    font-family: 'Nunito', sans-serif;
+    
+}
+
+a.buttonlink {
+    text-decoration: none;
+    color: #fff;
 }
