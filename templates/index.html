@@ -3,12 +3,14 @@
 {% block jsext %}
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDN1P_EGMeYDtgzg22HindpmcRnNr_zEv8&amp;sensor=true"></script>
   <script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/src/markerclusterer_compiled.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=visualization"></script>
   <script src="/static/javascripts/clustermap.js"></script>
-  <script src="/static/javascripts/data.json"></script>
 
 <script type="text/javascript">
   $(document).ready(function() {
-        initialize();
+        $.getJSON('/data', function(data){
+            initialize(data);
+        });
   });
 </script>
 {% endblock %}

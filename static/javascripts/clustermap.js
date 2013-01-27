@@ -3,9 +3,11 @@
     var markerClusterer;
     var geocoder;
     var infowindow;
+    var symptoms = {};
+    var symptoms_point_array;
+    var heatmap;
     
-    
-    function initialize() {
+    function initialize(data) {
         var mapOptions = {
             center: new google.maps.LatLng(47.652421, -122.310376),
             zoom: 8,
@@ -14,16 +16,37 @@
         map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
             
         geocoder = new google.maps.Geocoder();
-        populateMap();
+        populateMap(data);
     }
       
-    function populateMap(){
-        for (var i = 0; i < data.people.length; i++){
-            var person = data.people[i];
+    function populateMap(data){
+        for (var i = 0; i < data.statuses.length; i++){
+            var person = data.statuses[i];
             addPersonMarker(person);
         }
+
+        for (var name in data.symptoms){
+            var instances = data.symptoms[name];
+            var one_symptom = [];
+            for (var i = 0; i < instances.length; i++){
+                one_symptom.push(new google.maps.LatLng(instances[i].latitude, instances[i].longitude));
+            }
+            symptoms[name] = one_symptom;
+        }
+
+        buildHeatmapOfSymptom('fever');
+
         
         markerClusterer = new MarkerClusterer(map, markers);
+        //markerClusterer.setMap(null);
+    }
+
+    function buildHeatmapOfSymptom(symptom_name){
+        symptoms_point_array = new google.maps.MVCArray(symptoms[symptom_name]);
+        heatmap = new google.maps.visualization.HeatmapLayer({
+            data: symptoms_point_array
+        });
+        heatmap.setMap(map);
     }
       
     function addPersonMarker(person){
