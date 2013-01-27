@@ -137,11 +137,12 @@ hr {
     float: left;
     width: 50%;
     margin-left: 5pt;
+    height: 100%;
 }
 
 #right {
-    margin-left: 50%;
-    width: 50%;
+    margin-left: 55%;
+    width: 55%;
 }
 
 #submitbar {
