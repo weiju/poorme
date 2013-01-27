@@ -25,11 +25,21 @@
   </div>
   <div id="right">
     <div class="whatswrong">What's wrong ?</div>
+    <ul class="symptomlist">
     {% for symptom in symptoms %}
-    <div><input type="checkbox" name="symptoms" value="{{symptom.id}}"> {{symptom.name}}</div>
+    <li><input type="checkbox" name="symptoms" value="{{symptom.id}}"> {{symptom.name}}</li>
     {% endfor %}
+    </ul>
   </div>
   <div class="clearfix" style="height: 2em;"></div>
+  <div style="margin-left: 5pt;">
+    <div class="whatswrong">What would you like your friends to send you ?</div>
+    <ul class="symptomlist">
+    {% for item in stuffs %}
+    <li><input type="checkbox" name="wishlist" value="{{item.id}}"> {{item.name}}</li>
+    {% endfor %}
+    </ul>
+  </div>
   <div id="submitbar"><input type="submit" value="Submit"></div>
   </form>
 </div>

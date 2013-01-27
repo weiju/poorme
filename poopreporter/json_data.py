@@ -10,16 +10,16 @@ def build_statuses():
     data = []
     query = Status.objects.all()
     for status in query:
-        zip_query = Zipcode.objects.filter(zipcode=status.zipcode)[0]
-        
-        status_data = {
-            'name': status.name, 
-            'status': status.status.text, 
-            'url': '/communication/' + str(status.id), 
-            'latitude': str(zip_query.latitude),
-            'longitude': str(zip_query.longitude),
-        }
-        data.append(status_data)
+        zip_query = Zipcode.objects.filter(zipcode=status.zipcode)
+        if zip_query.count() > 0:
+            status_data = {
+                'name': status.name, 
+                'status': status.status.text, 
+                'url': '/communication/' + str(status.id), 
+                'latitude': str(zip_query[0].latitude),
+                'longitude': str(zip_query[0].longitude),
+            }
+            data.append(status_data)
     return data
 
 
@@ -31,20 +31,21 @@ def build_symptoms():
     data = {}
     query = Status.objects.all()
     for status in query:
-        zip_query = Zipcode.objects.filter(zipcode=status.zipcode)[0]
-        symptoms = status.symptoms.all()
-        for symptom in symptoms:
-            symptom_data = {
-                'name': symptom.name,
-                'latitude': str(zip_query.latitude),
-                'longitude': str(zip_query.longitude),
-            }
-            
-            name = str(symptom.name)
-            if data.has_key(name):
-                data[name] += [symptom_data]
-            else:
-                data[name] = [symptom_data]
+        zip_query = Zipcode.objects.filter(zipcode=status.zipcode)
+        if zip_query.count():
+            symptoms = status.symptoms.all()
+            for symptom in symptoms:
+                symptom_data = {
+                    'name': symptom.name,
+                    'latitude': str(zip_query[0].latitude),
+                    'longitude': str(zip_query[0].longitude),
+                }
+
+                name = str(symptom.name)
+                if data.has_key(name):
+                    data[name] += [symptom_data]
+                else:
+                    data[name] = [symptom_data]
     return data
 
 def build_symptom_list():

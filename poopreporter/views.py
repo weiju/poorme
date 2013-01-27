@@ -17,9 +17,10 @@ class StatusForm(forms.ModelForm):
 
     name = forms.CharField(max_length=200, required=False)
     anonymous = forms.BooleanField(required=False)
-    status = forms.CharField(max_length=1000, required=False)
-    zipcode = forms.CharField(max_length=20, required=False)
+    status = forms.CharField(max_length=1000, required=True)
+    zipcode = forms.CharField(max_length=20, required=True)
     symptoms = forms.TypedMultipleChoiceField(coerce=int, choices=[(s.id, s.name) for s in Symptom.objects.all()])
+    wishlist = forms.TypedMultipleChoiceField(required=False, coerce=int, choices=[(s.id, s.name) for s in Stuff.objects.all()])
 
 def index(request):
     homeclass = 'navlinksel'
@@ -40,9 +41,13 @@ def contact(request):
 def communication(request, id):
     status = Status.objects.get(id=id)
     replies = status.replies
+    wishlist = status.wishlist
     print "replies: ", replies.count()
-    for reply in replies.all():
-        print "reply: ", reply
+    print "wishes: ", wishlist.count()
+
+    for wish in wishlist.all():
+        print "wish: ", wish
+
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -58,11 +63,17 @@ def communication(request, id):
 
 def input(request):
     symptoms = Symptom.objects.all()
+    stuffs = Stuff.objects.all()
     if request.method == 'POST':
         form = StatusForm(request.POST)
         if form.is_valid():
             name = form.cleaned_data['name']
             anonymous = form.cleaned_data['anonymous']
+            wishes = form.cleaned_data['wishlist']
+            syms = form.cleaned_data['symptoms']
+            print "wishes: ", wishes
+            print "symptoms: ", syms
+
             if anonymous:
                 name = '(anonymous)'
             status = form.cleaned_data['status']
@@ -71,6 +82,7 @@ def input(request):
             comment.save()
             mystatus.status = comment
             mystatus.save()
+            form.save_m2m()
             return HttpResponseRedirect('/')
         else:
             errors = form.errors
