@@ -3,26 +3,30 @@
   <head>
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="/static/css/main.css" type="text/css" />
+    <link href='http://fonts.googleapis.com/css?family=Nunito:400,700,300' rel='stylesheet' type='text/css'>
     <script src="/static/javascripts/jquery-1.9.0.min.js"></script>
     <meta name="viewport" content="width=device-width/" >
     {% block jsext %}{% endblock %}
   </head>
   <body>
-    <div id="topborder"></div>
-    <a href="/"><img alt="logo" src="/static/images/logo.png" class="align-left"></a>
-    <div id="nav">
-      <ul>
-        <li><a href="/" class="{{homeclass}}">Home</a></li>
-        <li><a href="/about" class="{{aboutclass}}">About</a></li>
-        <li><a href="/team" class="{{teamclass}}">Team</a></li>
-        <li><a href="/contact" class="{{contactclass}}">Contact</a></li>
-        <li><input type="text" onfocus="this.value=''" value="Search" class="searchbox"></li>
-      </ul>
-    </div>
+    <div id="outertopbar"><div id="innertopbar">Profile | Logout</div></div>
+    <div id="outerheader"><div id="innerheader">
+      <a href="/"><img alt="logo" src="static/images/logo.png" class="align-left"></a>
+      <div class="bigbutton"><a href="/input" class="buttonlink">I'm Sick</a></div>
+      <div id="nav">
+        <ul>
+          <li><a href="/" id="selected">Home</a></li>
+          <li><a href="about" class="">About</a></li>
+          <li><a href="team" class="">Team</a></li>
+          <li><a href="contact" class="">Contact</a></li>
+          <!-- li><input type="text" onfocus="this.value=''" value="Search" class="searchbox"></li -->
+        </ul>
+      </div>      
+    </div></div>
     <div class="clearfix"></div>
     <div id="content">
       {% block content %}{% endblock %}
     </div>
-    <div id="footer"></div>
+    <div id="outerfooter"><div id="innerfooter">Copyright 2013 - TeamDookie</div></div>
   </body>
 </html>
