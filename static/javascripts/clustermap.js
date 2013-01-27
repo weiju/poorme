@@ -67,7 +67,7 @@
             if (infowindow) infowindow.close();
 
             infowindow = new google.maps.InfoWindow({
-                content: person.name + " says: " + person.status + "<br /><a href='" + person.wall_url + "'>view wall</a>"
+                content: person.name + " says: " + person.status + "<br /><a href='" + person.url + "'>view wall</a>"
             });
             infowindow.open(map, this);
         });   
