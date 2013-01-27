@@ -62,7 +62,7 @@ def communication(request, id):
     return render(request, 'communication.html', locals())
 
 def input(request):
-    symptoms = Symptom.objects.all()
+    symptoms = Symptom.objects.all().order_by('name')
     stuffs = Stuff.objects.all()
     if request.method == 'POST':
         form = StatusForm(request.POST)
