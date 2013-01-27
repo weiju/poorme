@@ -1,12 +1,18 @@
 {% extends 'base.html' %}
 {% block title %}Poop Reporter - Welcome{% endblock %}
 {% block jsext %}
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDN1P_EGMeYDtgzg22HindpmcRnNr_zEv8&amp;sensor=true"></script>
+  <script type="text/javascript" src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/src/markerclusterer_compiled.js"></script>
+  <script src="/static/javascripts/clustermap.js"></script>
+  <script src="/static/javascripts/data.json"></script>
+
 <script type="text/javascript">
   $(document).ready(function() {
+        initialize();
   });
 </script>
 {% endblock %}
 {% block content %}
-    Find out more <a href="about">about</a> Dookie Detective!
+  <div id="map_canvas" style="width:600px; height:400px; border: 1px solid black; margin: 5px;"></div>
 {% endblock %}
 

@@ -1,0 +1,9 @@
+var data = { 
+ "people": [
+    {"name": "kathleen", "status": "I feel lousy", "wall_url": "http://www.panoramio.com/photo/27932", "longitude": -122.310376, "latitude": 47.652421, "date": "25 January 2013", "zip": 94062},
+    {"name": "wei-ju", "status": "I feel great!", "wall_url": "http://www.panoramio.com/photo/27932", "longitude": -122.310376, "latitude": 47.653521, "date": "25 January 2013", "zip": 98122},
+    {"name": "brian", "status": "I have a stuffy nose", "wall_url": "http://www.panoramio.com/photo/27932", "longitude": -122.310455, "latitude": 47.65421, "date": "25 January 2013", "zip": 98195},
+    {"name": "matt", "status": "I like hats", "wall_url": "http://www.panoramio.com/photo/27932", "longitude": -122.3207, "latitude": 47.657421, "date": "25 January 2013", "zip": 94025},
+    {"name": "karlyn", "status": "biking is great", "wall_url": "http://www.panoramio.com/photo/27932", "longitude": -122.33030, "latitude": 47.653421, "date": "25 January 2013", "zip": 98122},
+    {"name": "lisa", "status": "I feel great!", "wall_url": "http://www.panoramio.com/photo/27932", "longitude": -122.310276, "latitude": 47.653451, "date": "25 January 2013", "zip": 98103}]
+    }
