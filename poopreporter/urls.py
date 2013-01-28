@@ -26,4 +26,5 @@ urlpatterns = patterns('',
     url(r'^statuses$', 'poopreporter.json_data.statuses'),
     url(r'^symptoms$', 'poopreporter.json_data.symptoms'),
     url(r'^data$', 'poopreporter.json_data.statuses_and_symptoms'),
+    url(r'^favicon\.ico$', 'django.views.generic.simple.redirect_to', {'url': '/static/images/favicon.ico'}),
 )
