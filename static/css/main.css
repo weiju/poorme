@@ -268,3 +268,7 @@ a.buttonlink {
     text-decoration: none;
     color: #fff;
 }
+
+.quote {
+    font-style: italic;
+}
