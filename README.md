@@ -11,7 +11,7 @@ This is the source code for TeamDookie's project "PoorMe" on Startup Weekend UW 
 ### Team members
   - Karlyn Beer
   - Lisa Stilley
-  - Kathleen Tuite
+  - Kathleen Tuite (http://github.com/ktuite/)
   - Matt Decuir
   - Brian Reyes
   - Wei-ju Wu
