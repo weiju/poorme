@@ -4,6 +4,11 @@
 <script type="text/javascript">
   $(document).ready(function() {
     $('#anonymous').click(function() {
+      if ($(this).is(':checked')) {
+        $('#nameinput').prop('value', 'anonymous');
+      } else {
+        $('#nameinput').prop('value', '');
+      }
       $('#nameinput').prop('disabled', $(this).is(':checked'));
     });
   });

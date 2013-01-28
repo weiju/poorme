@@ -5,3 +5,4 @@ insert into poopreporter_stuff (name) values ('fruit basket');
 insert into poopreporter_stuff (name) values ('DVD');
 insert into poopreporter_stuff (name) values ('Aleve');
 insert into poopreporter_stuff (name) values ('Tylenol');
+insert into poopreporter_stuff (name) values ('Weed');
