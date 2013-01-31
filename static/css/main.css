@@ -272,3 +272,7 @@ a.buttonlink {
 .quote {
     font-style: italic;
 }
+
+ol {
+    margin-left: 20pt;
+}
