@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.utils import simplejson
-from poopreporter.models import Status, Zipcode, Symptom
+from poopreporter.models import Status, Symptom
 from zipmap import ZIPCODES
 
 def statuses(request):

@@ -1,12 +1,6 @@
 from django.db import models
 
-class Food(models.Model):
-  name = models.CharField(max_length=200)
-
 class Symptom(models.Model):
-  name = models.CharField(max_length=200)
-
-class Neighborhood(models.Model):
   name = models.CharField(max_length=200)
 
 class Stuff(models.Model):
@@ -23,8 +17,3 @@ class Status(models.Model):
   symptoms = models.ManyToManyField(Symptom)
   replies = models.ManyToManyField(Comment, related_name='+')
   wishlist = models.ManyToManyField(Stuff)
-
-class Zipcode(models.Model):
-  zipcode = models.CharField(max_length=20)
-  longitude = models.DecimalField(max_digits=9, decimal_places=6)
-  latitude = models.DecimalField(max_digits=9, decimal_places=6)
