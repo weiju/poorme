@@ -42,11 +42,6 @@ def communication(request, id):
     status = Status.objects.get(id=id)
     replies = status.replies
     wishlist = status.wishlist
-    print "replies: ", replies.count()
-    print "wishes: ", wishlist.count()
-
-    for wish in wishlist.all():
-        print "wish: ", wish
 
     if request.method == 'POST':
         form = CommentForm(request.POST)
@@ -71,15 +66,15 @@ def input(request):
             anonymous = form.cleaned_data['anonymous']
             wishes = form.cleaned_data['wishlist']
             syms = form.cleaned_data['symptoms']
-            print "wishes: ", wishes
-            print "symptoms: ", syms
 
-            if anonymous:
-                name = '(anonymous)'
             status = form.cleaned_data['status']
             mystatus = form.save(commit=False)
             comment = Comment(author=name, text=status)
             comment.save()
+            # check whether we are anonymous
+            if anonymous or len(name.strip()) == 0:
+                mystatus.name = 'Anonymous'
+
             mystatus.status = comment
             mystatus.save()
             form.save_m2m()
