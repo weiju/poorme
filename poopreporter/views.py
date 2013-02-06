@@ -13,7 +13,7 @@ class CommentForm(forms.ModelForm):
 class StatusForm(forms.ModelForm):
     class Meta:
         model = Status
-        exclude = ['replies', 'status']
+        fields = ['name', 'zipcode', 'symptoms', 'wishlist']
 
     name = forms.CharField(max_length=200, required=False)
     anonymous = forms.BooleanField(required=False)
