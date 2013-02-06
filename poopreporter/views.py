@@ -4,39 +4,42 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django import forms
 from models import *
 
+
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-    author = forms.CharField(max_length=200, required=False)
-    text = forms.CharField(max_length=1000, required=False)
+
 
 class StatusForm(forms.ModelForm):
     class Meta:
         model = Status
         fields = ['name', 'zipcode', 'symptoms', 'wishlist']
 
-    name = forms.CharField(max_length=200, required=False)
     anonymous = forms.BooleanField(required=False)
     status = forms.CharField(max_length=1000, required=True)
-    zipcode = forms.CharField(max_length=20, required=True)
     symptoms = forms.TypedMultipleChoiceField(coerce=int, choices=[(s.id, s.name) for s in Symptom.objects.all()])
     wishlist = forms.TypedMultipleChoiceField(required=False, coerce=int, choices=[(s.id, s.name) for s in Stuff.objects.all()])
+
 
 def index(request):
     homeclass = 'selected'
     return render_to_response('index.html', locals())
 
+
 def about(request):
     aboutclass = 'selected'
     return render_to_response('about.html', locals())
+
 
 def team(request):
     teamclass = 'selected'
     return render_to_response('team.html', locals())
 
+
 def contact(request):
     contactclass = 'selected'
     return render_to_response('contact.html', locals())
+
 
 def communication(request, id):
     status = Status.objects.get(id=id)
@@ -55,6 +58,7 @@ def communication(request, id):
     else:
         form = CommentForm()
     return render(request, 'communication.html', locals())
+
 
 def input(request):
     symptoms = Symptom.objects.all().order_by('name')
