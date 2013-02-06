@@ -1,8 +1,5 @@
-# Wei-ju's settings
+# MySQL settings
 from .base import *
-
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
 
 DATABASES = {
     'default': {
@@ -14,11 +11,3 @@ DATABASES = {
         'PORT': '',
     }
 }
-
-STATICFILES_DIRS = (
-    '/home/weiju/StartupWeekend/poorme/static',
-)
-
-TEMPLATE_DIRS = (
-    '/home/weiju/StartupWeekend/poorme/templates',
-)
