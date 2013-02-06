@@ -2,7 +2,7 @@ from django.shortcuts import render_to_response, render
 from django.template import RequestContext
 from django.http import HttpResponse, HttpResponseRedirect
 from django import forms
-from models import *
+from .models import *
 
 
 class CommentForm(forms.ModelForm):

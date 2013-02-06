@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 {% block title %}PoorMe - Our Team{% endblock %}
 {% block headerext %}
 <div class="bigbutton"><a href="/input" class="buttonlink">I'm Sick</a></div>
 {% endblock %}
 {% block content %}
-<img src="static/images/teamdookie.jpg" style="border: 0">
+<img src="{% static "images/teamdookie.jpg" %}" style="border: 0">
 <h3>Bios</h3>
 <p>
 <b>Karlyn Beer</b> holds a MS in epidemiology from UW School of Public Health and is a current PhD candidate in the Molecular and Cellular Biology program at UW and Institute for Systems Biology.  Contact Karlyn at kdb26 @ uw.edu for more information, collaborations and site suggestions/updates. Twitter @KarlynBeer

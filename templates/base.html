@@ -1,10 +1,11 @@
+{% load staticfiles %}
 <!doctype html>
 <html>
   <head>
     <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="/static/css/main.css" type="text/css" />
+    <link rel="stylesheet" href="{% static "css/main.css" %}" type="text/css" />
     <link href='http://fonts.googleapis.com/css?family=Nunito:400,700,300' rel='stylesheet' type='text/css'>
-    <script src="/static/javascripts/jquery-1.9.0.min.js"></script>
+    <script src="{% static "javascripts/jquery-1.9.0.min.js" %}"></script>
     <script type="text/javascript">
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-38056362-1']);
@@ -21,7 +22,7 @@
   <body>
     <div id="outertopbar"><div id="innertopbar">Profile | Logout</div></div>
     <div id="outerheader"><div id="innerheader">
-      <a href="/"><img alt="logo" src="/static/images/logo.png" class="align-left"></a>
+      <a href="/"><img alt="logo" src="{% static "images/logo.png" %}" class="align-left"></a>
       {% block headerext %}
       {% endblock %}
       <div id="nav">
