@@ -17,8 +17,11 @@ class StatusForm(forms.ModelForm):
 
     anonymous = forms.BooleanField(required=False)
     status = forms.CharField(max_length=1000, required=True)
-    symptoms = forms.TypedMultipleChoiceField(coerce=int, choices=[(s.id, s.name) for s in Symptom.objects.all()])
-    wishlist = forms.TypedMultipleChoiceField(required=False, coerce=int, choices=[(s.id, s.name) for s in Stuff.objects.all()])
+    symptoms = forms.TypedMultipleChoiceField(
+        coerce=int, choices=[(s.id, s.name) for s in Symptom.objects.all()])
+    wishlist = forms.TypedMultipleChoiceField(
+        required=False, coerce=int, choices=[(s.id, s.name)
+                                             for s in Stuff.objects.all()])
 
 
 def index(request):
