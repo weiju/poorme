@@ -20,7 +20,13 @@
     {% block jsext %}{% endblock %}
   </head>
   <body>
-    <div id="outertopbar"><div id="innertopbar">Profile | Logout</div></div>
+
+    {% if user.is_authenticated %}
+        <div id="outertopbar"><div id="innertopbar">Feel better, {{ user.username }}!  <a href="{% url django.contrib.auth.views.logout  %}">Logout</a> </div></div>
+    {% else %}
+        <div id="outertopbar"><div id="innertopbar"><a href="/login/facebook"><img src="{% static "images/facebook_login_button.png" %}" /></a></div></div>
+    {% endif %}
+
     <div id="outerheader"><div id="innerheader">
       <a href="/"><img alt="logo" src="{% static "images/logo.png" %}" class="align-left"></a>
       {% block headerext %}

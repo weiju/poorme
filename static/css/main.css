@@ -280,3 +280,8 @@ ol {
 ol ul {
     margin-left: 20pt;
 }
+
+#innertopbar a:link {color:#ddddff;}      /* unvisited link */
+#innertopbar a:visited {color:#ddddff;}  /* visited link */
+#innertopbar a:hover {color:#ffffff;}  /* mouse over link */
+#innertopbar a:active {color:#ffffff;}  /* selected link */ 

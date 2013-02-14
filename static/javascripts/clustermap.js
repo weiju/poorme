@@ -6,7 +6,7 @@
     var symptoms = {};
     var symptoms_point_array;
     var heatmap;
-    var rand = 1/100.0;
+    var rand = 1/500.0;
     
     function initialize(data) {
         var mapOptions = {
@@ -26,7 +26,7 @@
             var html = '<div><input type="checkbox" name="symptoms" value="' + symptom_name + '" checked> ' + symptom_name + '</div>';
             $("#symptom_checklist").append($(html));
         }
-        var html = '<div><input type="submit" value="Refresh map" onclick="refreshSymptoms()" /></div>';
+        var html = '<div><input type="submit" onchange="refreshSymptoms()" value="Refresh map" " /></div>';
         $("#symptom_checklist").append($(html));
         
         showPeople();
