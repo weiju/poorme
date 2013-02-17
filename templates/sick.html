@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %}PoorMe - Input{% endblock %}
+{% block jsext %}
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#anonymous').click(function() {
+      if ($(this).is(':checked')) {
+        $('#nameinput').prop('value', 'anonymous');
+      } else {
+        $('#nameinput').prop('value', '');
+      }
+      $('#nameinput').prop('disabled', $(this).is(':checked'));
+    });
+  });
+</script>
+{% endblock %}
+{% block content %}
+
+
+<div id="inputarea">
+  <form action="/input/" method="post">{% csrf_token %}
+  <div id="left">
+        <div class="inputrow"><span class="caption" id="namecaption">Name</span> {{ user.first_name }}</div>
+        <!--<div class="inputrow"><input name="anonymous" id="anonymous" type="checkbox"><span>hide from map</span></div> -->
+        <div class="inputrow"><span class="caption">Status</span></div>
+        {% if text_errors %}
+        {{text_errors}}
+        {% endif %}
+        
+        <div class="inputrow">{{ text_form.text }} </div> 
+        
+        <div class="inputrow"><span class="caption">Zip</span></div>
+        {% if episode_errors %}
+            {{episode_errors}}
+        {% endif %}
+        <div class="inputrow">{{ episode_form.zipcode }}</div>   
+  </div>
+  <div id="right">
+  
+    <div class="whatswrong">What's wrong ?</div>
+    {% if update_errors %}
+        {{update_errors}}
+    {% endif %}
+    {{ update_form.symptoms }}
+  </div>
+  
+  <div class="clearfix" style="height: 2em;"></div>
+  
+  <div style="margin-left: 5pt;">
+    <div class="whatswrong">What would you like your friends to send you ?</div>
+    {{ episode_form.wishlist }}
+  </div>
+
+    <div id="submitbar"><input type="submit" value="Submit"></div>
+  </form>
+</div>
+{% endblock %}

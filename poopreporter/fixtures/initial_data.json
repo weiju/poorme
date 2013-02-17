@@ -1,151 +1,206 @@
 [
   {
-    "model": "poopreporter.stuff",
-    "pk": 1,
-    "fields": { "name": "soup" }
-  },
-  {
-    "model": "poopreporter.stuff",
-    "pk": 2,
-    "fields": { "name": "flowers" }
-  },
-  {
-    "model": "poopreporter.stuff",
-    "pk": 3,
-    "fields": { "name": "cupcakes" }
-  },
-  {
-    "model": "poopreporter.stuff",
-    "pk": 4,
-    "fields": { "name": "fruit basket" }
-  },
-  {
-    "model": "poopreporter.stuff",
-    "pk": 5,
-    "fields": { "name": "DVD" }
-  },
-  {
-    "model": "poopreporter.stuff",
-    "pk": 6,
-    "fields": { "name": "Aleve" }
-  },
-  {
-    "model": "poopreporter.stuff",
-    "pk": 7,
-    "fields": { "name": "Tylenol" }
-  },
-  {
-    "model": "poopreporter.stuff",
-    "pk": 8,
-    "fields": { "name": "Weed" }
-  },
-
-  {
-    "model": "poopreporter.symptom",
-    "pk": 1,
-    "fields": { "name": "Diarrhea" }
-  },
-  {
-    "model": "poopreporter.symptom",
-    "pk": 2,
-    "fields": { "name": "Vomiting" }
-  },
-  {
-    "model": "poopreporter.symptom",
-    "pk": 3,
-    "fields": { "name": "Abdominal Cramps" }
-  },
-  {
-    "model": "poopreporter.symptom",
-    "pk": 4,
-    "fields": { "name": "Nausea" }
-  },
-  {
-    "model": "poopreporter.symptom",
-    "pk": 5,
-    "fields": { "name": "Fever" }
-  },
-  {
-    "model": "poopreporter.symptom",
-    "pk": 6,
-    "fields": { "name": "Joint/back aches" }
-  },
-  {
-    "model": "poopreporter.symptom",
-    "pk": 7,
-    "fields": { "name": "Fatigue" }
-  },
-  {
-    "model": "poopreporter.symptom",
-    "pk": 8,
-    "fields": { "name": "Headache" }
-  },
-  {
-    "model": "poopreporter.symptom",
-    "pk": 9,
-    "fields": { "name": "Sneezing" }
-  },
-  {
-    "model": "poopreporter.symptom",
-    "pk": 10,
-    "fields": { "name": "Cough" }
-  },
-  {
-    "model": "poopreporter.symptom",
-    "pk": 11,
-    "fields": { "name": "Sore Throat" }
-  },
-  {
-    "model": "poopreporter.symptom",
-    "pk": 12,
-    "fields": { "name": "Nasal Congestion" }
-  },
-  {
-    "model": "poopreporter.symptom",
-    "pk": 13,
-    "fields": { "name": "Runny Nose" }
-  },
-  {
-    "model": "poopreporter.symptom",
-    "pk": 14,
-    "fields": { "name": "Decreased Appetite" }
-  },
-  {
-    "model": "poopreporter.symptom",
-    "pk": 15,
-    "fields": { "name": "Stomach Ache" }
-  },
-  {
-    "model": "poopreporter.symptom",
-    "pk": 16,
-    "fields": { "name": "Chills" }
-  },
-
-  {
-    "model": "poopreporter.comment",
-    "pk": 1,
-    "fields": { "author": "John", "text": "I am feeling terrible :-(" }
-  },
-  {
-    "model": "poopreporter.comment",
-    "pk": 2,
-    "fields": { "author": "Mary", "text": "Sorry you are sick." }
-  },
-  {
-    "model": "poopreporter.comment",
-    "pk": 3,
-    "fields": { "author": "Jack", "text": "Feel better." }
-  },
-
-  {
-    "model": "poopreporter.status",
-    "pk": 1,
+    "pk": 1, 
+    "model": "poopreporter.symptom", 
     "fields": {
-      "name": "John",
-      "status": 1,
-      "zipcode": "98101",
-      "replies": [1, 2],
-      "symptoms": [1, 2]
+      "name": "Diarrhea"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "poopreporter.symptom", 
+    "fields": {
+      "name": "Vomiting"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "poopreporter.symptom", 
+    "fields": {
+      "name": "Abdominal Cramps"
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "poopreporter.symptom", 
+    "fields": {
+      "name": "Nausea"
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "poopreporter.symptom", 
+    "fields": {
+      "name": "Fever"
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "poopreporter.symptom", 
+    "fields": {
+      "name": "Joint/back aches"
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "poopreporter.symptom", 
+    "fields": {
+      "name": "Fatigue"
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "poopreporter.symptom", 
+    "fields": {
+      "name": "Headache"
+    }
+  }, 
+  {
+    "pk": 9, 
+    "model": "poopreporter.symptom", 
+    "fields": {
+      "name": "Sneezing"
+    }
+  }, 
+  {
+    "pk": 10, 
+    "model": "poopreporter.symptom", 
+    "fields": {
+      "name": "Cough"
+    }
+  }, 
+  {
+    "pk": 11, 
+    "model": "poopreporter.symptom", 
+    "fields": {
+      "name": "Sore Throat"
+    }
+  }, 
+  {
+    "pk": 12, 
+    "model": "poopreporter.symptom", 
+    "fields": {
+      "name": "Nasal Congestion"
+    }
+  }, 
+  {
+    "pk": 13, 
+    "model": "poopreporter.symptom", 
+    "fields": {
+      "name": "Runny Nose"
+    }
+  }, 
+  {
+    "pk": 14, 
+    "model": "poopreporter.symptom", 
+    "fields": {
+      "name": "Decreased Appetite"
+    }
+  }, 
+  {
+    "pk": 15, 
+    "model": "poopreporter.symptom", 
+    "fields": {
+      "name": "Stomach Ache"
+    }
+  }, 
+  {
+    "pk": 16, 
+    "model": "poopreporter.symptom", 
+    "fields": {
+      "name": "Chills"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "poopreporter.stuff", 
+    "fields": {
+      "name": "soup"
+    }
+  }, 
+  {
+    "pk": 2, 
+    "model": "poopreporter.stuff", 
+    "fields": {
+      "name": "flowers"
+    }
+  }, 
+  {
+    "pk": 3, 
+    "model": "poopreporter.stuff", 
+    "fields": {
+      "name": "cupcakes"
+    }
+  }, 
+  {
+    "pk": 4, 
+    "model": "poopreporter.stuff", 
+    "fields": {
+      "name": "fruit basket"
+    }
+  }, 
+  {
+    "pk": 5, 
+    "model": "poopreporter.stuff", 
+    "fields": {
+      "name": "DVD"
+    }
+  }, 
+  {
+    "pk": 6, 
+    "model": "poopreporter.stuff", 
+    "fields": {
+      "name": "Aleve"
+    }
+  }, 
+  {
+    "pk": 7, 
+    "model": "poopreporter.stuff", 
+    "fields": {
+      "name": "Tylenol"
+    }
+  }, 
+  {
+    "pk": 8, 
+    "model": "poopreporter.stuff", 
+    "fields": {
+      "name": "Weed"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "poopreporter.episode", 
+    "fields": {
+      "started": "2013-02-17T09:27:20.998Z", 
+      "ended": null, 
+      "user": 1, 
+      "wishlist": [
+        1, 
+        5
+      ], 
+      "zipcode": "98122"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "poopreporter.update", 
+    "fields": {
+      "symptoms": [
+        12, 
+        13
+      ], 
+      "episode": 1, 
+      "time": "2013-02-17T09:27:21.004Z"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "poopreporter.loggedincomment", 
+    "fields": {
+      "text": "I have the sniffles :(", 
+      "episode": 1, 
+      "user": 1, 
+      "time": "2013-02-17T09:27:21.009Z"
     }
   }
 ]

@@ -5,7 +5,23 @@
 <img src="{{ profile_pic }}" />
 
 {% if user.is_authenticated %}
-    <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
+
+    <div class="bigbuttonprofile"><a href="/input" class="buttonlink">I'm Sick</a></div>
+
+    <p>Welcome, {{ user.first_name }} {{ user.last_name }}!</p>
+
+    
+    <p>
+    <h2>Past times you've been sick:</h2>
+    {% for i in episodes %}
+        <h4><a href="/episode/{{ i.id }}">{{ i.started|timesince }} ago ({{ i.started|date:"M d, Y" }})</a></h4>
+        <h4>{{ i.description }}</h4>
+        <hr />
+    {% endfor %}
+    </p>
+    
+    
+    
 {% else %}
     <p>Welcome, new user. Please log in.</p>
 {% endif %}

@@ -26,8 +26,9 @@
             var html = '<div><input type="checkbox" name="symptoms" value="' + symptom_name + '" checked> ' + symptom_name + '</div>';
             $("#symptom_checklist").append($(html));
         }
-        var html = '<div><input type="submit" onchange="refreshSymptoms()" value="Refresh map" " /></div>';
-        $("#symptom_checklist").append($(html));
+        $(':checkbox').change(function () {
+            refreshSymptoms();
+        });
         
         showPeople();
     }

@@ -22,9 +22,9 @@
   <body>
 
     {% if user.is_authenticated %}
-        <div id="outertopbar"><div id="innertopbar">Feel better, {{ user.username }}!  <a href="{% url django.contrib.auth.views.logout  %}">Logout</a> </div></div>
+        <div id="outertopbar"><div id="innertopbar">Logged in as <a href="/accounts/profile">{{ user.first_name }} {{ user.last_name }}</a>!  <a href="{% url django.contrib.auth.views.logout  %}">Logout</a> </div></div>
     {% else %}
-        <div id="outertopbar"><div id="innertopbar"><a href="/login/facebook"><img src="{% static "images/facebook_login_button.png" %}" /></a></div></div>
+        <div id="outertopbar"><div id="innertopbar"><a href="/login/facebook">Log in with Facebook</a></div></div>
     {% endif %}
 
     <div id="outerheader"><div id="innerheader">

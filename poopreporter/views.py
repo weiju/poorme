@@ -8,26 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login
 from social_auth.models import UserSocialAuth
 
-
-class CommentForm(forms.ModelForm):
-    class Meta:
-        model = Comment
-
-
-class StatusForm(forms.ModelForm):
-    class Meta:
-        model = Status
-        fields = ['name', 'zipcode', 'symptoms', 'wishlist']
-
-    anonymous = forms.BooleanField(required=False)
-    status = forms.CharField(max_length=1000, required=True)
-    symptoms = forms.TypedMultipleChoiceField(
-        coerce=int, choices=[(s.id, s.name) for s in Symptom.objects.all()])
-    wishlist = forms.TypedMultipleChoiceField(
-        required=False, coerce=int, choices=[(s.id, s.name)
-                                             for s in Stuff.objects.all()])
-
-
+  
 def index(request):
     homeclass = 'selected'
     return render_to_response('index.html', locals(), RequestContext(request))
@@ -48,69 +29,127 @@ def contact(request):
     return render_to_response('contact.html', locals(), RequestContext(request))
 
 
-def communication(request, id):
-    status = Status.objects.get(id=id)
-    replies = status.replies
-    wishlist = status.wishlist
+def profile(request):
+    #auth_token = UserSocialAuth.objects.filter(provider='facebook').get().tokens
+    episodes = Episode.objects.filter(user=request.user).order_by('-started')
+    profile_pic = "http://graph.facebook.com/%s/picture?type=large" % (request.user)
+    return render_to_response('profile.html', locals(), RequestContext(request))
 
+class UpdateForm(forms.ModelForm):
+    class Meta:
+        model = Update
+        fields = ['symptoms']
+        
+    symptom_choices= [(s.id, s.name) for s in Symptom.objects.all()]
+    symptoms = forms.MultipleChoiceField(choices=symptom_choices, required=True, widget=forms.CheckboxSelectMultiple(), label='Select your symptoms') 
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = LoggedInComment
+        fields = ['text']
+        
+    text = forms.CharField(max_length=1000, widget=forms.Textarea)
+
+class EpisodeForm(forms.ModelForm):
+    class Meta:
+        model = Episode
+        fields = ['zipcode', 'wishlist']
+        
+    wishlist_choices = [(s.id, s.name) for s in Stuff.objects.all()]
+    wishlist = forms.MultipleChoiceField(choices=wishlist_choices, required=False, widget=forms.CheckboxSelectMultiple(), label='What would help you feel better?') 
+    
+def updateSymptoms(request, id):
+    episode = Episode.objects.get(id=id)
+    
     if request.method == 'POST':
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            reply = form.save()
-            status.replies.add(reply)
-            status.save()
-            return HttpResponseRedirect('/communication/%s' % str(id))
-        else:
-            errors = form.errors
-    else:
-        form = CommentForm()
-    return render(request, 'communication.html', locals(), RequestContext(request))
+        update_form = UpdateForm(request.POST)
+        
+        if update_form.is_valid(): 
+            update = update_form.save(commit=False)
+            update.episode = episode
+            update.save()
+            update_form.save_m2m()
+        return HttpResponseRedirect('/episode/%d' % int(id))
+            
+def addComment(request, id):
+    episode = Episode.objects.get(id=id)
+    
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+
+        if comment_form.is_valid(): 
+            comment = comment_form.save(commit=False)
+            comment.episode = episode
+            comment.user = request.user
+            comment.save()
+        return HttpResponseRedirect('/episode/%d' % int(id))
+
+
+def episode(request, id):
+    episode = Episode.objects.get(id=id)
+        
+    updates = Update.objects.filter(episode=episode).order_by('time')
+    comments = LoggedInComment.objects.filter(episode=episode).order_by('time')[1:]
+    last_symptoms = map(lambda x: x.pk, updates[len(updates)-1].symptoms.all())
+    form = UpdateForm()
+    form.fields['symptoms'].initial = last_symptoms
+    
+    comment_form = CommentForm()
+    
+    name = episode.user.first_name
+    status = episode.status
+    wishlist = episode.wishlist
+    return render_to_response('episode.html', locals(), RequestContext(request))
 
 
 def input(request):
-    symptoms = Symptom.objects.all().order_by('name')
-    stuffs = Stuff.objects.all()
-    if request.method == 'POST':
-        form = StatusForm(request.POST)
-        if form.is_valid():
-            name = form.cleaned_data['name']
-            anonymous = form.cleaned_data['anonymous']
-            wishes = form.cleaned_data['wishlist']
-            syms = form.cleaned_data['symptoms']
-
-            status = form.cleaned_data['status']
-            mystatus = form.save(commit=False)
-            comment = Comment(author=name, text=status)
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect('/accounts/login/')
+        
+    if request.method == 'POST':    
+        print "POST"
+        episode_form = EpisodeForm(request.POST, instance=Episode())
+        update_form = UpdateForm(request.POST, instance=Update())
+        text_form = CommentForm(request.POST, instance=LoggedInComment())
+        if episode_form.is_valid() and update_form.is_valid() and text_form.is_valid():
+            episode = episode_form.save(commit=False)
+            print episode
+            episode.user = request.user
+            episode.save()
+            episode_form.save_m2m()
+            
+            update = update_form.save(commit=False)
+            print update
+            update.episode = episode
+            update.save()
+            update_form.save_m2m()
+            
+            comment = text_form.save(commit=False)
+            print comment
+            comment.episode = episode
+            comment.user = request.user
             comment.save()
-            # check whether we are anonymous
-            if anonymous or len(name.strip()) == 0:
-                mystatus.name = 'Anonymous'
-
-            mystatus.status = comment
-            mystatus.save()
-            form.save_m2m()
-            return HttpResponseRedirect('/communication/%d' % mystatus.id)
+            return HttpResponseRedirect('/accounts/profile/')
         else:
-            errors = form.errors
+            episode_errors = episode_form.errors
+            text_errors = text_form.errors
+            update_errors = update_form.errors
+                
     else:
-        print "empty form"
-        form = StatusForm()
-    return render(request, 'input.html', locals(), RequestContext(request))
+        episode_form = EpisodeForm(instance=Episode())
+        update_form = UpdateForm(instance=Update())
+        text_form = CommentForm(instance=LoggedInComment())
+    
+    return render_to_response('sick.html', locals(), RequestContext(request))
 
-def profile(request):
-    cat_var = 55
-    print "USER:", request.user
-    instance = UserSocialAuth.objects.filter(provider='facebook').get()
-    print instance.tokens
-    profile_pic = "http://graph.facebook.com/%s/picture?type=large" % (request.user)
-    return render_to_response('profile.html', locals(), RequestContext(request))
 
 
 class UserForm(forms.ModelForm):
     class Meta:
         model = User  
 
-def register(request):
+def register(request):        
     if request.method == 'POST':
         user_form = UserCreationForm(request.POST)
         if user_form.is_valid():

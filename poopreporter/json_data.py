@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.utils import simplejson
-from poopreporter.models import Status, Symptom
+from poopreporter.models import *
 from zipmap import ZIPCODES
 
 
@@ -8,21 +8,24 @@ def statuses(request):
     data = build_statuses()
     return HttpResponse(simplejson.dumps(data), mimetype='application/json')
 
+def latlong(update):
+    return ZIPCODES[update.episode.zipcode]
 
 def build_statuses():
     data = []
-    query = Status.objects.all()
-    for status in query:
-        if status.zipcode in ZIPCODES:
-            latitude, longitude = ZIPCODES[status.zipcode]
-            status_data = {
-                'name': status.name,
-                'status': status.status.text,
-                'url': '/communication/' + str(status.id),
+    query = Episode.objects.all()
+    for episode in query:
+        if episode.zipcode in ZIPCODES:
+            latitude, longitude = ZIPCODES[episode.zipcode]
+            first_comment = LoggedInComment.objects.filter(episode=episode)[0]
+            update_data = {
+                'name': episode.user.first_name,
+                'status': first_comment.text,
+                'url': '/episode/' + str(episode.id),
                 'latitude': str(latitude),
                 'longitude': str(longitude),
             }
-            data.append(status_data)
+            data.append(update_data)
     return data
 
 
@@ -33,11 +36,11 @@ def symptoms(request):
 
 def build_symptoms():
     data = {}
-    query = Status.objects.all()
-    for status in query:
-        if status.zipcode in ZIPCODES:
-            latitude, longitude = ZIPCODES[status.zipcode]
-            symptoms = status.symptoms.all()
+    query = Update.objects.all()
+    for update in query:
+        if update.episode.zipcode in ZIPCODES:
+            latitude, longitude = latlong(update)
+            symptoms = update.symptoms.all()
             for symptom in symptoms:
                 symptom_data = {
                     'name': symptom.name,

@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<script type="text/javascript">
+    function showForm(){
+        $('#updatesymptoms').toggle();
+    }
+</script>
+
+{% if user.is_authenticated %}
+    <div id="privatediv">
+    <p>Only you can see this box with your symptoms:</p>
+    
+        <div class="bigbuttonprofile"  onclick="showForm()"><a href="#" class="buttonlink"></a>Update Symptoms</a></div>
+
+    <p>
+    {% for u in updates %}
+    
+        <br />
+        <i>{{ u.time }}</i>
+        <ul style="padding-left: 30px;">
+        {% for s in u.symptoms.all %}
+            <li>{{ s.name }}</li>
+        {% endfor %}    
+        </ul>
+    {% endfor %}
+    
+    <div id="updatesymptoms">
+        <div class="whatswrong">How are you feeling now ?</div>
+        <form method="post" action="/updatesymptoms/{{id}}">
+        {% csrf_token %}
+        
+        {% for field in form %}
+            {{ field }}
+        {% endfor %}
+    
+        <input type="submit" value="update" />
+
+        </form>
+    </div>
+
+    </div>
+{% endif %}
+<br />
+<br />
+
+<div id="sidebar">
+  <div class="personname">{{name}}</div>
+  <div class="comment">"{{status}}"</div>
+  {% if wishlist.count > 0 %}
+  <div id="wishlist">
+  <h4>Wishlist</h4>
+  <ul style="padding-left: 30px;">
+    {% for w in wishlist.all %}
+    <li>{{w.name}}</li>
+    {% endfor %}
+  </ul>
+  </div>
+  {% endif %}
+  
+</div>
+
+<div id="maincol">
+  {% if comments.count == 0 %}
+  <div style="height: 2em; font-style: italic">Be the first to leave a reply to {{status.name}}</div>
+  {% else %}
+  {% for r in comments.all %}
+  <div class="commentbox">
+    <div class="comment">"{{r.text}}"</div>
+    <div class="signature">- {{r.user.first_name}}</div>
+    <div class="clearfix"></div>
+    <hr>
+  </div>
+  {% endfor %}
+  {% endif %}
+  
+  <div>
+    <form action="/addcomment/{{id}}" method="post">{% csrf_token %}
+    <div>Commenting as {{user.first_name}}</div>
+    {{ comment_form.text }}
+    {% if wishlist.count > 0 %}
+    <div>Send the following to {{name}}</div>
+    <ul style="list-style: none">
+      {% for w in wishlist.all %}
+      <li><input type="checkbox"> {{w.name}}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+    <div> <input type="submit" value="Submit"></div>
+    </form>
+  </div>
+
+
+</div>
+   
+{% endblock %}

@@ -79,7 +79,7 @@ img.align-left {
 }
 
 h1, h2, h3, h4, h5 {
-    font-family: Times, serif;
+    font-family: 'Nunito', sans-serif;
     margin: 5pt;
     color: #444444;
 }
@@ -236,6 +236,21 @@ ul.symptomlist li {
     margin: -65px 0px 0px 0px;
 }
 
+.bigbuttonprofile {
+    padding: 20px;
+    background-color: #2E3092;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    float: right;
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    color: #fff;
+    height: 30px;
+    clear: both;
+}
+
 #content {
     padding-top: 20px;
     padding-bottom: 50px;
@@ -285,3 +300,20 @@ ol ul {
 #innertopbar a:visited {color:#ddddff;}  /* visited link */
 #innertopbar a:hover {color:#ffffff;}  /* mouse over link */
 #innertopbar a:active {color:#ffffff;}  /* selected link */ 
+
+#privatediv {
+    background-color: #dddddd;
+    border: 1px solid #aaaaaa;
+    padding: 10px;
+}
+
+#updatesymptoms {
+    padding-top: 10px;
+    margin-top: 10px;
+    border-top: 1px solid black;
+    display: none;
+}
+
+#updatesymptoms ul {
+    list-style: none;
+}
