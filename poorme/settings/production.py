@@ -15,12 +15,12 @@ DATABASES = {
     }
 }
 
-STATIC_ROOT = '/var/www/static/'
+STATIC_ROOT = '/home/weiju/webapps/poorme_static/'
 
 STATICFILES_DIRS = (
-    '/var/www/dookiedj/static',
+    '/home/weiju/webapps/poorme/poorme/static',
 )
 
 TEMPLATE_DIRS = (
-    '/var/www/dookiedj/templates',
+    '/home/weiju/webapps/poorme/poorme/templates',
 )
