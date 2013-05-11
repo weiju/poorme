@@ -7,17 +7,31 @@
     var symptoms_point_array;
     var heatmap;
     var rand = 1/500.0;
-    
+    var cityName = "Seattle"
+
     function initialize(data) {
         var mapOptions = {
             center: new google.maps.LatLng(47.652421, -122.310376),
-            zoom: 8,
+            zoom: 10,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
-            
+
+        $.ajax({
+            type: "GET",
+            url: "http://api.ipinfodb.com/v3/ip-city/?key=139a60d81999b3025d9fc13d412ae7f3997ff110cace95b1505fb72258aaef64&format=json",
+            dataType: "jsonp",
+            success: centerMap
+        })
+ 
         geocoder = new google.maps.Geocoder();
         populateMap(data);
+    }
+
+    function centerMap(data){    
+        map.setCenter(new google.maps.LatLng(data.latitude, data.longitude));
+        cityName = data.cityName + " (" + data.zipCode + ")";
+        showSymptoms();
     }
     
     function populateChecklist(symptoms){
@@ -29,8 +43,6 @@
         $(':checkbox').change(function () {
             refreshSymptoms();
         });
-        
-        showPeople();
     }
 
     function showPeople(){
@@ -42,7 +54,7 @@
             heatmap = null;
         }
         $("#symptom_checklist").hide();
-        $("#map_title").html("People Sick in Seattle");
+        $("#map_title").html("People Sick in " + cityName);
     }
 
     function showSymptoms(){
@@ -55,7 +67,7 @@
         }
         $("#symptom_checklist").show();
         
-        $("#map_title").html("Trending Symptoms in Seattle");
+        $("#map_title").html("Trending Symptoms in " + cityName);
 
     }
     
