@@ -11,14 +11,26 @@
       }
       $('#nameinput').prop('disabled', $(this).is(':checked'));
     });
+
+    $.ajax({
+      type: "GET",
+      url: "http://api.ipinfodb.com/v3/ip-city/?key=139a60d81999b3025d9fc13d412ae7f3997ff110cace95b1505fb72258aaef64&format=json",
+      dataType: "jsonp",
+      success: fillInZip
+    });
   });
+
+  function fillInZip(data){
+      console.log("fill in zip ", data);
+      $("#id_zipcode").val(data.zipCode);
+  }
 </script>
 {% endblock %}
 {% block content %}
 
 
 <div id="inputarea">
-  <form action="/input/" method="post">{% csrf_token %}
+  <form action="/input/" method="post" id="illnessForm">{% csrf_token %}
   <div id="left">
         <div class="inputrow"><span class="caption" id="namecaption">Name</span> {{ user.first_name }}</div>
         <!--<div class="inputrow"><input name="anonymous" id="anonymous" type="checkbox"><span>hide from map</span></div> -->
@@ -45,11 +57,6 @@
   </div>
   
   <div class="clearfix" style="height: 2em;"></div>
-  
-  <div style="margin-left: 5pt;">
-    <div class="whatswrong">What would you like your friends to send you ?</div>
-    {{ episode_form.wishlist }}
-  </div>
 
     <div id="submitbar"><input type="submit" value="Submit"></div>
   </form>
