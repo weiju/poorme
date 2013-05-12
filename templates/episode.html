@@ -46,6 +46,15 @@
 <br />
 <br />
 
+<div id="publicdiv" style="background-color: white; border: 1px solid black; padding: 10px;">
+
+{% if user.is_authenticated %}
+<div>
+Anyone can see the contents of this box.
+<br />
+</div>
+{% endif %}
+
 <div id="sidebar">
   <div class="personname">{{name}}</div>
   <div class="comment">"{{status}}"</div>
@@ -62,6 +71,17 @@
   
 </div>
 
+{% if user.is_authenticated %}
+<div class="bigbuttonprofile"><a href="https://www.facebook.com/dialog/feed?
+  app_id=330449400388404&
+  link=http://poorme.co/episode/{{episode.id}}/&
+  picture=http://poorme.co/static/images/logo.png&
+  name=Poor {{name}} is sick!&
+  caption={{status}}&
+  description=Your friend isn't feeling well and is using PoorMe to track their symptoms. Find out how you can help them feel better!&
+  redirect_uri=http://poorme.co/episode/{{episode.id}}" class="buttonlink">Post to Facebook</a></div>
+  {% endif %}
+
 <div id="maincol">
   {% if comments.count == 0 %}
   <div style="height: 2em; font-style: italic">Be the first to leave a reply to {{status.name}}</div>
@@ -77,22 +97,30 @@
   {% endif %}
   
   <div>
-    <form action="/addcomment/{{id}}" method="post">{% csrf_token %}
-    <div>Commenting as {{user.first_name}}</div>
-    {{ comment_form.text }}
-    {% if wishlist.count > 0 %}
-    <div>Send the following to {{name}}</div>
-    <ul style="list-style: none">
-      {% for w in wishlist.all %}
-      <li><input type="checkbox"> {{w.name}}</li>
-      {% endfor %}
-    </ul>
-    {% endif %}
+    {% if user.is_authenticated %}
+      <form action="/addcomment/{{id}}" method="post">{% csrf_token %}
+      <div>Commenting as {{user.first_name}}</div>
+      {{ comment_form.text }}
+      {% if wishlist.count > 0 %}
+      <div>Send the following to {{name}}</div>
+      <ul style="list-style: none">
+        {% for w in wishlist.all %}
+        <li><input type="checkbox"> {{w.name}}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
 
-    <div> <input type="submit" value="Submit"></div>
-    </form>
+      <div> <input type="submit" value="Submit"></div>
+      </form>
+    {% else %}
+    <a href="/login/facebook"><h2>Sign in to leave a reply</h2></a>
+    {% endif %}
   </div>
 
+
+  <div style="clear: both;"></div>
+        
+</div>
 
 </div>
    

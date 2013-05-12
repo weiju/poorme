@@ -81,6 +81,7 @@ def addComment(request, id):
         if comment_form.is_valid(): 
             comment = comment_form.save(commit=False)
             comment.episode = episode
+            print request.user, "REQEST USER"
             comment.user = request.user
             comment.save()
         return HttpResponseRedirect('/episode/%d' % int(id))
@@ -89,6 +90,7 @@ def addComment(request, id):
 def episode(request, id):
     episode = Episode.objects.get(id=id)
         
+    profile_pic = "http://graph.facebook.com/%s/picture?type=large" % (request.user)
     updates = Update.objects.filter(episode=episode).order_by('time')
     comments = LoggedInComment.objects.filter(episode=episode).order_by('time')[1:]
     last_symptoms = map(lambda x: x.pk, updates[len(updates)-1].symptoms.all())
@@ -130,7 +132,7 @@ def input(request):
             comment.episode = episode
             comment.user = request.user
             comment.save()
-            return HttpResponseRedirect('/accounts/profile/')
+            return HttpResponseRedirect('/episode/%d' % episode.id)
         else:
             episode_errors = episode_form.errors
             text_errors = text_form.errors
