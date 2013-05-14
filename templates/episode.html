@@ -71,7 +71,7 @@ Anyone can see the contents of this box.
   
 </div>
 
-{% if user.is_authenticated %}
+{% if user.is_authenticated and user == episode.user %}
 <div class="bigbuttonprofile"><a href="https://www.facebook.com/dialog/feed?
   app_id=330449400388404&
   link=http://poorme.co/episode/{{episode.id}}/&
@@ -98,7 +98,7 @@ Anyone can see the contents of this box.
   
   <div>
     {% if user.is_authenticated %}
-      <form action="/addcomment/{{id}}" method="post">{% csrf_token %}
+      <form action="/addcomment/{{id}}/" method="post">{% csrf_token %}
       <div>Commenting as {{user.first_name}}</div>
       {{ comment_form.text }}
       {% if wishlist.count > 0 %}
