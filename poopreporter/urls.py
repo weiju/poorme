@@ -24,10 +24,10 @@ urlpatterns = patterns('',
     url(r'^accounts/profile/$', 'poopreporter.views.profile' ),
     url(r'^accounts/register/$', 'poopreporter.views.register' ),
     
-    url(r'^episode/(?P<id>[^/]*)$', 'poopreporter.views.episode' ),
+    url(r'^episode/(?P<id>[^/]*)/$', 'poopreporter.views.episode' ),
     url(r'^input/$', 'poopreporter.views.input' ),
-    url(r'^updatesymptoms/(?P<id>[^/]*)$', 'poopreporter.views.updateSymptoms' ),
-    url(r'^addcomment/(?P<id>[^/]*)$', 'poopreporter.views.addComment' ),
+    url(r'^updatesymptoms/(?P<id>[^/]*)/$', 'poopreporter.views.updateSymptoms' ),
+    url(r'^addcomment/(?P<id>[^/]*)/$', 'poopreporter.views.addComment' ),
     
     
     url(r'', include('social_auth.urls')),
