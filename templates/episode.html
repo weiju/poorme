@@ -9,7 +9,7 @@
     }
 </script>
 
-{% if user.is_authenticated %}
+{% if user.is_authenticated and user == episode.user %}
     <div id="privatediv">
     <p>Only you can see this box with your symptoms:</p>
     
