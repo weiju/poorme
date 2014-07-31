@@ -1,4 +1,4 @@
 #!/bin/bash
 
-PYTHONPATH=. django-admin syncdb $@
+PYTHONPATH=. django-admin.py syncdb $@
 

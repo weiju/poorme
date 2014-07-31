@@ -7,7 +7,7 @@ DATABASES = {
         'NAME': 'poopreporter',
         'USER': 'dj_ango',
         'PASSWORD': 'django',
-        'HOST': '',
+        'HOST': 'superfiretruck.com',
         'PORT': '',
     }
 }

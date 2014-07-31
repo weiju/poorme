@@ -1,4 +1,5 @@
 from django.conf.urls import patterns, include, url
+from django.shortcuts import redirect
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -16,7 +17,7 @@ urlpatterns = patterns('',
     url(r'^statuses$', 'poopreporter.json_data.statuses'),
     url(r'^symptoms$', 'poopreporter.json_data.symptoms'),
     url(r'^data$', 'poopreporter.json_data.statuses_and_symptoms'),
-    url(r'^favicon\.ico$', 'django.views.generic.simple.redirect_to',
+    url(r'^favicon\.ico$', 'redirect',
         {'url': '/static/images/favicon.ico'}),
 
     url(r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}),

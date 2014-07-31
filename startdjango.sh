@@ -1,4 +1,4 @@
 #!/bin/bash
 
-PYTHONPATH=. django-admin runserver $@
+PYTHONPATH=. django-admin.py runserver $@
 
